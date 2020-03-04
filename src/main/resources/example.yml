@@ -1,0 +1,35 @@
+# this is a comment
+name: John
+
+names: # Comment
+  - John
+  - Paul
+  - Ringo
+
+pound_sign: "#"
+
+book:
+  author: Joe Buck
+  publisher: Random House
+
+truth: yes # boolean if yes
+another_truth: True # boolean
+more_true: true # boolean
+
+false: no # false, FALSE
+
+string_val: "This is it's quote" # single quote = yml will escape that
+
+colon_string: "My courses: one two three" # you need to escape if colon is in there
+
+include_new_lines: |
+  asdf asd fasf
+  asda sfas fsfa fas
+  asdasd afsaf asfa
+# will create multiline string.
+
+ignore_new_lines: >
+  this is
+  just one long
+  string
+# result: all newline character will be dropped and this will be one long string.

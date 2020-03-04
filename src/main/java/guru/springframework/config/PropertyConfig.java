@@ -13,16 +13,7 @@ import org.springframework.core.env.Environment;
 
 
 @Configuration
-// @PropertySource({"classpath:datasource.properties", "classpath:jms.properties"}) // we want to use this set of properties
-@PropertySources({
-        @PropertySource("classpath:datasource.properties"),
-        @PropertySource("classpath:jms.properties")
-})
 public class PropertyConfig {
-
-    @Autowired
-    Environment env;
-
     // Spring evaluated expression -> go into spring context and get that value as externalized property!
     @Value("${mydb.username}")
     String user;
@@ -47,7 +38,7 @@ public class PropertyConfig {
     public FakeDataSource fakeDataSource() {
         FakeDataSource fakeDataSource = new FakeDataSource();
         // Reading from the environment variable
-        fakeDataSource.setUser(env.getProperty("GURU_USERNAME"));
+        fakeDataSource.setUser(user);
         fakeDataSource.setPassword(password);
         fakeDataSource.setUrl(url);
         return fakeDataSource;
@@ -62,10 +53,4 @@ public class PropertyConfig {
         return jmsBroker;
     }
 
-    @Bean
-    public static PropertySourcesPlaceholderConfigurer properties() {
-        // this is reading the file for us. -> enable us to use @Value annotation.
-        PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer = new PropertySourcesPlaceholderConfigurer();
-        return propertySourcesPlaceholderConfigurer;
-    }
 }
